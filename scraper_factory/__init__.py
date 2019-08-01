@@ -1,8 +1,8 @@
 from scrapy.crawler import CrawlerProcess
-from spiders.amazonwishlist import AmazonWishlistSpider
+from scraper_factory.spiders.amazonwishlist import AmazonWishlistSpider
 
 
-def get_data(url):
+def scrape(url):
     process = CrawlerProcess(settings={
         'FEED_FORMAT': 'json',
         'LOG_LEVEL': 'INFO'
