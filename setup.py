@@ -19,7 +19,7 @@ long_description = read('README.rst')
 
 
 setup(
-    name='Scraper Factory',
+    name='scraper-factory',
 
     version='0.0.1',
 
