@@ -1,5 +1,5 @@
 include LICENSE
-include README.md
+include README.rst
 include MANIFEST.in
 include setup.cfg
 include setup.py
@@ -7,6 +7,6 @@ include setup.py
 recursive-include requirements *.txt
 graft scraper_factory
 
-recursive-exclude __pycache__
+recursive-exclude __pycache__ *
 global-exclude *.pyc *.pyo *.swp *.swo
 
