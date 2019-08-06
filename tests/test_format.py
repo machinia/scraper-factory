@@ -10,9 +10,7 @@ class TestCodeFormat(TestCase):
         filenames = []
         parent = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                               os.path.pardir))
-        print(parent)
         path = os.path.join(parent, "scraper_factory")
-        print(path)
         for root, _, files in os.walk(path):
             python_files = [f for f in files if f.endswith('.py')]
             for pyfile in python_files:
