@@ -14,3 +14,12 @@ def queue_to_list(q):
     while not q.empty():
         arr.append(q.get())
     return arr
+
+
+def remove_query_string(url):
+    """
+    Removes query string from a url
+    :param url: string with a url
+    :return: clean base url
+    """
+    return url.split('?')[0]

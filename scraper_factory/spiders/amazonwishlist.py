@@ -1,6 +1,8 @@
 import scrapy
 import re
 
+from scraper_factory.core.utils import remove_query_string
+
 
 class AmazonWishlistSpider(scrapy.Spider):
     BASE_URL = 'https://www.amazon.com'
@@ -24,14 +26,16 @@ class AmazonWishlistSpider(scrapy.Spider):
             title = item.css('#itemName_' + id + '::text').extract_first()
             link = item.css('#itemName_' + id + '::attr(href)')\
                 .extract_first()
+            if link:
+                link = self.BASE_URL + link
             img = item.css('#itemImage_' + id).css('img::attr(src)')\
                 .extract_first()
 
             obj = {
                 'id': id,
                 'title': title,
-                'link': link,
-                'img': img
+                'link': remove_query_string(link),
+                'img': remove_query_string(img)
             }
 
             self.q.put(obj)
