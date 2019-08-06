@@ -11,6 +11,6 @@ def queue_to_list(q):
         raise TypeError('Argument must be a multiprocessing Queue')
 
     arr = []
-    while q.qsize() != 0:
+    while not q.empty():
         arr.append(q.get())
     return arr
