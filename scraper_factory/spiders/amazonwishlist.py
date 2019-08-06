@@ -17,12 +17,12 @@ class AmazonWishlistSpider(scrapy.Spider):
         super().__init__(**kwargs)
 
     def parse(self, response):
-        page_items = response.css(".g-item-sortable")
+        page_items = response.css('.g-item-sortable')
 
         for item in page_items:
             id = item.css('li::attr(data-itemid)').extract_first()
-            title = item.css('#itemName_' + id + "::text").extract_first()
-            link = item.css('#itemName_' + id + "::attr(href)")\
+            title = item.css('#itemName_' + id + '::text').extract_first()
+            link = item.css('#itemName_' + id + '::attr(href)')\
                 .extract_first()
             img = item.css('#itemImage_' + id).css('img::attr(src)')\
                 .extract_first()

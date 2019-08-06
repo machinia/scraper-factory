@@ -1,4 +1,4 @@
-from tests.utils.SpiderTestBase import SpiderTestBase
+from tests.utils.spidertestbase import SpiderTestBase
 
 
 class AmazonWishlistSpiderTest(SpiderTestBase):
@@ -6,7 +6,7 @@ class AmazonWishlistSpiderTest(SpiderTestBase):
     def test_parse_no_scrolling(self):
         """
         Test response of AmazonWishlistSpider for a page
-        that doesn't requiere scrolling
+        that doesn't require scrolling
         """
         url = 'https://www.amazon.com/hz/wishlist/ls/30E0MJEB97F1P'
         results_file = 'amazon_wishlist_no_scrolling.txt'
