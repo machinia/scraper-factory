@@ -4,3 +4,6 @@ python:
 # command to run tests
 script:
     - 'python setup.py test'
+after_success:
+    - pip install python-coveralls
+    - coveralls
