@@ -22,4 +22,6 @@ def remove_query_string(url):
     :param url: string with a url
     :return: clean base url
     """
+    if not isinstance(url, str):
+        raise TypeError('Argument must be a string')
     return url.split('?')[0]
