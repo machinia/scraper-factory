@@ -48,12 +48,12 @@ class TestCoreUtils(TestCase):
         url_list = [
             ('', ''),
             ('amazon', 'amazon'),
-            ('amazon.com', 'amazon.com')
+            ('amazon.com', 'amazon.com'),
             ('https://www.amazon.com', 'https://www.amazon.com'),
             ('https://www.amazon.com/hz/wishlist/ls/24XY9873RPAYN/ref=cm_go',
              'https://www.amazon.com/hz/wishlist/ls/24XY9873RPAYN/ref=cm_go'),
             ('https://www.amazon.com/hz/wishlist/ls/24XY9873RPAYN?'
-             'filter=DEFAULT&viewType=list&lek=97df910a-49ea-9a85-c1511c756f36',
+             'filter=DEFAULT&viewType=list&lek=49ea-9a85-c1511c756f36',
              'https://www.amazon.com/hz/wishlist/ls/24XY9873RPAYN')
         ]
 

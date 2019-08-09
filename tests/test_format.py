@@ -6,7 +6,6 @@ from unittest import TestCase
 class TestCodeFormat(TestCase):
     def test_pep8_code(self):
         style = pycodestyle.StyleGuide()
-        style.options.max_line_length = 80
         filenames = []
         parent = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                               os.path.pardir))
@@ -23,7 +22,6 @@ class TestCodeFormat(TestCase):
 
     def test_pep8_tests(self):
         style = pycodestyle.StyleGuide()
-        style.options.max_line_length = 80
         filenames = []
         path = os.path.abspath(os.path.dirname(__file__))
         for root, _, files in os.walk(path):
