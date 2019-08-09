@@ -17,7 +17,6 @@ def get_requirements(file_name):
 
 long_description = read('README.rst')
 
-
 setup(
     name='scraper-factory',
 
@@ -43,9 +42,11 @@ setup(
     ],
     keywords='scraping wishlist amazon',
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
-    install_requires=get_requirements('requirements.txt'),
+    install_requires=get_requirements('default.txt'),
     extras_require={},
     package_data={},
     data_files=[],
     entry_points={},
+    test_suite='tests',
+    setup_requires=get_requirements('tests.txt'),
 )
