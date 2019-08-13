@@ -67,3 +67,25 @@ class TestCoreUtils(TestCase):
         arg = [None, list(), 1, {}]
         for a in arg:
             self.assertRaises(TypeError, utils.remove_query_string, a)
+
+    def test_validate_urls(self):
+        """
+        Tests validate_url using different strings to emulate a url
+        :return:
+        """
+        url_list = [
+            (123, False),
+            ({}, False),
+            ('', False),
+            ('aliexpress', False),
+            ('google.com', False),
+            ('https://www.google.com', True),
+            ('https://www.amazon.com/hz/wishlist/ls/24XY9873RPAYN/ref=cm_go',
+             True),
+            ('https://www.amazon.com/hz/wishlist/ls/24XY9873RPAYN?'
+             'filter=DEFAULT&viewType=list&lek=49ea-9a85-c1511c756f36',
+             True)
+        ]
+
+        for url, expected_response in url_list:
+            self.assertEqual(utils.validate_url(url), expected_response)
