@@ -1,22 +1,13 @@
-import scrapy
-import re
+from scrapy import Request
 
 from scraper_factory.core.utils import remove_query_string
+from scraper_factory.core.base_spider import BaseSpider
 
 
-class AmazonWishlistSpider(scrapy.Spider):
-    BASE_URL = 'https://www.amazon.com'
-    name = 'amazonwishlist'
-    allowed_domains = ['www.amazon.com']
+class AmazonWishlistSpider(BaseSpider):
 
     def __init__(self, uri, queue, **kwargs):
-        self.start_urls = [uri]
-        self.q = queue
-
-        domain = re.sub(r'(http|https)?://', '', uri)
-        self.allowed_domains.append(domain)
-
-        super().__init__(**kwargs)
+        super().__init__('amazonwishlist', uri, queue, **kwargs)
 
     def parse(self, response):
         page_items = response.css('.g-item-sortable')
@@ -27,7 +18,7 @@ class AmazonWishlistSpider(scrapy.Spider):
             link = item.css('#itemName_' + id + '::attr(href)')\
                 .extract_first()
             if link:
-                link = self.BASE_URL + link
+                link = self.base_url + link
             img = item.css('#itemImage_' + id).css('img::attr(src)')\
                 .extract_first()
 
@@ -48,5 +39,5 @@ class AmazonWishlistSpider(scrapy.Spider):
             lek_uri = response.css(
                 '#sort-by-price-load-more-items-url-next-batch::attr(value)')\
                 .extract_first()
-            next_page = self.BASE_URL + lek_uri
-            yield scrapy.Request(next_page)
+            next_page = self.base_url + lek_uri
+            yield Request(next_page)
