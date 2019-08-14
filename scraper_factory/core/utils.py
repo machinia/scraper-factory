@@ -1,4 +1,5 @@
 from multiprocessing.queues import Queue
+from urllib.parse import urlparse
 
 
 def queue_to_list(q):
@@ -25,3 +26,16 @@ def remove_query_string(url):
     if not isinstance(url, str):
         raise TypeError('Argument must be a string')
     return url.split('?')[0]
+
+
+def validate_url(url):
+    """
+    Checks that the given string contains valid url
+    :param url: string with a url
+    :return: True if url is valid, False otherwise
+    """
+    try:
+        result = urlparse(url)
+        return all([result.scheme, result.netloc])
+    except (ValueError, TypeError, AttributeError):
+        return False

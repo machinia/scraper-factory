@@ -1,5 +1,4 @@
 from unittest import TestCase
-
 from tests.utils import read_from_file
 from scraper_factory.core.scrape import scrape
 
