@@ -1,5 +1,4 @@
 from scrapy import Request
-
 from scraper_factory.core.utils import remove_query_string
 from scraper_factory.core.base_spider import BaseSpider
 

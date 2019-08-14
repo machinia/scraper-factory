@@ -1,6 +1,5 @@
-from scrapy import crawler
 from multiprocessing import Process, Queue
-
+from scrapy import crawler
 from scraper_factory.spiders.amazonwishlist import AmazonWishlistSpider
 from scraper_factory.core import utils
 

@@ -1,8 +1,7 @@
-from scraper_factory.core import utils
-
-from unittest import TestCase
-from multiprocessing import Queue
 from time import sleep
+from multiprocessing import Queue
+from unittest import TestCase
+from scraper_factory.core import utils
 
 
 class TestCoreUtils(TestCase):

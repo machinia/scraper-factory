@@ -1,11 +1,10 @@
-import scrapy
 from abc import ABC, abstractmethod
 from urllib.parse import urlparse
-
+from scrapy import Spider
 from scraper_factory.core.utils import validate_url
 
 
-class BaseSpider(ABC, scrapy.Spider):
+class BaseSpider(ABC, Spider):
 
     def __init__(self, name, uri, queue, **kwargs):
         if not validate_url(uri):

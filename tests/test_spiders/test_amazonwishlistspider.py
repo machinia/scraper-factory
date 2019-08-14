@@ -1,7 +1,6 @@
-from tests.utils.spidertestbase import SpiderTestBase
-from scraper_factory.spiders.amazonwishlist import AmazonWishlistSpider
-
 from multiprocessing import Queue
+from scraper_factory.spiders.amazonwishlist import AmazonWishlistSpider
+from tests.utils.spidertestbase import SpiderTestBase
 
 
 class AmazonWishlistSpiderTest(SpiderTestBase):
