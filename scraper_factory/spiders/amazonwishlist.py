@@ -4,6 +4,24 @@ from scraper_factory.core.base_spider import BaseSpider
 
 
 class AmazonWishlistSpider(BaseSpider):
+    metadata = {
+            'name': 'amazonwishlist',
+            'version': '0.1',
+            'description': 'Scrapes an amazon wishlist and returns all '
+                           'items in json format',
+            'parameters': [
+                {
+                    'name': 'url',
+                    'type': 'str',
+                    'description': 'Amazon wishlist url to be scraped'
+                },
+                {
+                    'name': 'queue',
+                    'type': 'multiprocessing.Queue',
+                    'description': 'Queue where results will be stored'
+                }
+            ]
+    }
 
     def __init__(self, uri, queue, **kwargs):
         super().__init__('amazonwishlist', uri, queue, **kwargs)

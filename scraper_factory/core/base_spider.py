@@ -5,10 +5,18 @@ from scraper_factory.core.utils import validate_url
 
 
 class BaseSpider(ABC, Spider):
+    metadata = {
+            'name': None,
+            'version': None,
+            'description': None,
+            'parameters': None
+    }
 
     def __init__(self, name, uri, queue, **kwargs):
         if not validate_url(uri):
             raise ValueError('Invalid URL')
+
+        self.check_metadata(self.metadata)
 
         self.name = name
         parsed_url = urlparse(uri)
@@ -26,3 +34,10 @@ class BaseSpider(ABC, Spider):
         """This method should implement how to parse the
          response data."""
         pass
+
+    @classmethod
+    def check_metadata(cls, metadata):
+        for key in cls.metadata:
+            if not metadata.get(key):
+                msg = '"{}" not defined in metadata'.format(key)
+                raise AttributeError(msg)
