@@ -21,6 +21,7 @@ class SpiderManager(object):
         :param path: string with the path to a folder where spiders are stored
         :return: Nothing
         """
+        self.spiders = {}
         for f in os.listdir(path):
             if not re.match(self.VALID_FILE_REGEX, f):
                 continue
@@ -44,9 +45,6 @@ class SpiderManager(object):
         :return: constructor of the class if it was properly loaded,
         None otherwise
         """
-        if not os.path.exists(filename):
-            return None
-
         with open(filename) as f:
             node = ast.parse(f.read())
 
