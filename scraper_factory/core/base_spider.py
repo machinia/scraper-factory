@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from urllib.parse import urlparse
 from scrapy import Spider
 from scraper_factory.core.utils import validate_url
+from scraper_factory.core.exceptions import InvalidUrlError
 
 
 class BaseSpider(ABC, Spider):
@@ -10,7 +11,7 @@ class BaseSpider(ABC, Spider):
 
     def __init__(self, name, uri, queue, **kwargs):
         if not validate_url(uri):
-            raise ValueError('Invalid URL')
+            raise InvalidUrlError('Invalid URL')
 
         self.check_metadata(self.metadata)
 
