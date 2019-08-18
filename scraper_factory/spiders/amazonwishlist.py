@@ -20,10 +20,15 @@ class AmazonWishlistSpider(BaseSpider):
                 link = self.base_url + link
             img = item.css('#itemImage_' + id).css('img::attr(src)')\
                 .extract_first()
+            byline = item.css('#item-byline-' + id + '::text').extract_first()
+            price = item.css('#itemPrice_' + id).css('span::text')\
+                .extract_first()
 
             obj = {
                 'id': id,
                 'title': title,
+                'byline': byline,
+                'price': price,
                 'link': remove_query_string(link),
                 'img': remove_query_string(img)
             }
