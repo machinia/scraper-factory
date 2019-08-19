@@ -6,7 +6,7 @@ from scraper_factory.core.exceptions import InvalidUrlError
 
 
 class BaseSpider(ABC, Spider):
-    METADATA_KEYS = ['name', 'version', 'description', 'parameters']
+    __METADATA_KEYS = ('name', 'version', 'description', 'parameters')
     metadata = {}
 
     def __init__(self, name, uri, queue, **kwargs):
@@ -33,7 +33,7 @@ class BaseSpider(ABC, Spider):
 
     @staticmethod
     def check_metadata(metadata):
-        for key in BaseSpider.METADATA_KEYS:
+        for key in BaseSpider.__METADATA_KEYS:
             if not metadata.get(key):
                 msg = '"{}" not defined in metadata'.format(key)
                 raise AttributeError(msg)
