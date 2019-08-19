@@ -19,7 +19,7 @@ class TestScrape(TestCase):
         """
         Test scrape method when an invalid url is received
         """
-        name = 'amazonwishlist'
+        name = 'amazon-wishlist'
         url = 'notanurl'
         self.assertRaises(exceptions.InvalidUrlError, scrape, name, url)
 
@@ -27,7 +27,7 @@ class TestScrape(TestCase):
         """
         Test happy path of the scrape method
         """
-        name = 'amazonwishlist'
+        name = 'amazon-wishlist'
         url = 'https://www.amazon.com/hz/wishlist/ls/30E0MJEB97F1P'
         results_file = 'amazon_wishlist_no_scrolling.txt'
 

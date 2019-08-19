@@ -10,7 +10,7 @@ class AmazonWishlistSpiderTest(SpiderTestBase):
         """
         url = 'https://www.amazon.com/hz/wishlist/ls/30E0MJEB97F1P'
         results_file = 'amazon_wishlist_no_scrolling.txt'
-        self.verify_url_results('amazonwishlist', url, results_file)
+        self.verify_url_results('amazon-wishlist', url, results_file)
 
     def test_parse_with_scrolling(self):
         """
@@ -19,7 +19,7 @@ class AmazonWishlistSpiderTest(SpiderTestBase):
         """
         url = 'https://www.amazon.com/hz/wishlist/ls/24XY9873RPAYN'
         results_file = 'amazon_wishlist_with_scrolling.txt'
-        self.verify_url_results('amazonwishlist', url, results_file)
+        self.verify_url_results('amazon-wishlist', url, results_file)
 
     def test_any_url(self):
         """
@@ -28,4 +28,4 @@ class AmazonWishlistSpiderTest(SpiderTestBase):
         """
         url = 'https://www.amazon.com/'
         results_file = 'amazon_wishlist_any_url.txt'
-        self.verify_url_results('amazonwishlist', url, results_file)
+        self.verify_url_results('amazon-wishlist', url, results_file)
