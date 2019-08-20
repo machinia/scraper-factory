@@ -1,3 +1,4 @@
+import os
 from unittest import TestCase
 from scraper_factory.core.spidermanager import SpiderManager
 from tests.sample_spiders.validmetadata.validmetadata \
@@ -6,12 +7,18 @@ from tests.sample_spiders.validmetadata.validmetadata \
 
 class TestSpiderManager(TestCase):
 
+    @classmethod
+    def tearDownClass(cls):
+        if 'SPIDER_PATH' in os.environ:
+            del os.environ['SPIDER_PATH']
+
     def test_invalid_path(self):
         """
         Tests an invalid path as parameter
         """
         path = '/invalidpath'
-        self.assertRaises(AttributeError, SpiderManager, path)
+        os.environ['SPIDER_PATH'] = path
+        self.assertRaises(AttributeError, SpiderManager)
 
     def test_several_folders(self):
         """
@@ -28,6 +35,7 @@ class TestSpiderManager(TestCase):
         m = SpiderManager()
         for spidername, valid_spiders in test_data:
             path = spider_path + spidername
+            os.environ['SPIDER_PATH'] = path
 
             m.load(path)
             spiders = m.get_spiders()
@@ -41,8 +49,9 @@ class TestSpiderManager(TestCase):
         """
         spider_name = 'validmetadata'
         path = 'tests/sample_spiders/' + spider_name
+        os.environ['SPIDER_PATH'] = path
 
-        m = SpiderManager(path)
+        m = SpiderManager()
         inst = m.instance(spider_name)
         self.assertEqual(inst.__name__, ValidMetadataSpider.__name__)
 
@@ -53,7 +62,8 @@ class TestSpiderManager(TestCase):
         """
         spider_name = 'nometadata'
         path = 'tests/sample_spiders/' + spider_name
+        os.environ['SPIDER_PATH'] = path
 
-        m = SpiderManager(path)
+        m = SpiderManager()
         inst = m.instance(spider_name)
         self.assertEqual(inst, None)

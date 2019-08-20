@@ -8,7 +8,8 @@ from scraper_factory.core import base_spider
 class SpiderManager(object):
     VALID_FILE_REGEX = r'([a-zA-Z0-9]+)\.py'
 
-    def __init__(self, path='scraper_factory/spiders'):
+    def __init__(self):
+        path = os.getenv('SPIDER_PATH', 'scraper_factory/spiders')
         if not os.path.isdir(path):
             raise AttributeError('Invalid path {}'.format(path))
 
