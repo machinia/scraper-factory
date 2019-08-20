@@ -11,7 +11,7 @@ API
 The API to use the library, scrape data and manage spiders is the following:
 
 - ``scrape(SPIDER_NAME, URL)``: scrapes the given ``URL`` using the spider referenced on ``SPIDER_NAME``.
-- ``list()``: list all spiders found by the library.
+- ``spiders()``: list all spiders found by the library.
 
 
 Custom Spiders

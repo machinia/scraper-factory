@@ -26,6 +26,6 @@ def scrape(spider_name, url):
     return utils.queue_to_list(data_q)
 
 
-def list():
+def spiders():
     m = SpiderManager()
     return m.get_spiders()
