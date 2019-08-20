@@ -75,9 +75,7 @@ class SpiderManager(object):
             msg = '{} found doesn\'t derive from BaseSpider'.format(classname)
             raise ImportError(msg)
 
-        for param in base_spider.BaseSpider.metadata:
-            if not cls.metadata.get(param):
-                raise AttributeError('Missing "{}" parameter'.format(param))
+        base_spider.BaseSpider.check_metadata(cls.metadata)
 
     def instance(self, name):
         """
