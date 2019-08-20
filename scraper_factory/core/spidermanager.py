@@ -6,7 +6,7 @@ from scraper_factory.core import base_spider
 
 
 class SpiderManager(object):
-    VALID_FILE_REGEX = r'([a-zA-Z0-9]+)\.py'
+    VALID_FILE_REGEX = r'(([a-zA-Z0-9]+)|-|_)+[^__]\.py'
 
     def __init__(self):
         path = os.getenv('SPIDER_PATH', 'scraper_factory/spiders')
@@ -75,7 +75,7 @@ class SpiderManager(object):
             msg = '{} found doesn\'t derive from BaseSpider'.format(classname)
             raise ImportError(msg)
 
-        for param in cls.metadata:
+        for param in base_spider.BaseSpider.metadata:
             if not cls.metadata.get(param):
                 raise AttributeError('Missing "{}" parameter'.format(param))
 

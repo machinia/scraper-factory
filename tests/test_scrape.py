@@ -1,5 +1,5 @@
 from unittest import TestCase
-from scraper_factory.core.scrape import scrape
+from scraper_factory.core.api import scrape
 from scraper_factory.core import exceptions
 from tests.utils import read_from_file
 
@@ -10,7 +10,7 @@ class TestScrape(TestCase):
         """
         Test scrape method behaviour on a invalid spider path
         """
-        name = 'nonexistingspider'
+        name = 'non-existing-spider'
         url = 'https://www.amazon.com/hz/wishlist/ls/30E0MJEB97F1P'
         self.assertRaises(exceptions.SpiderNotFoundError,
                           scrape, name, url)

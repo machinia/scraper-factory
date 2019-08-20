@@ -1,11 +1,11 @@
 from multiprocessing import Queue
 from scraper_factory.core.exceptions import InvalidUrlError
 from tests.utils.spidertestbase import SpiderTestBase
-from tests.sample_spiders.incompletemetadata.incompletemetadata \
+from tests.sample_spiders.incomplete_metadata.incomplete_metadata \
     import IncompleteMetadataSpider
-from tests.sample_spiders.nometadata.nometadata \
+from tests.sample_spiders.no_metadata.no_metadata \
     import NoMetadataSpider
-from tests.sample_spiders.validmetadata.validmetadata \
+from tests.sample_spiders.valid_metadata.valid_metadata \
     import ValidMetadataSpider
 
 

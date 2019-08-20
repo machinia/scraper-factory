@@ -1,7 +1,7 @@
 import os
 from unittest import TestCase
 from scraper_factory.core.spidermanager import SpiderManager
-from tests.sample_spiders.validmetadata.validmetadata \
+from tests.sample_spiders.valid_metadata.valid_metadata \
     import ValidMetadataSpider
 
 
@@ -27,9 +27,11 @@ class TestSpiderManager(TestCase):
         """
         spider_path = 'tests/sample_spiders/'
         test_data = [
-            ('validmetadata', 1),
-            ('nometadata', 0),
-            ('incompletemetadata', 0)
+            ('valid_metadata', 1),
+            ('no_metadata', 0),
+            ('incomplete_metadata', 0),
+            ('two_spiders_one_file', 0),
+            ('no_basespider_inheritance', 0)
         ]
 
         m = SpiderManager()
@@ -47,7 +49,7 @@ class TestSpiderManager(TestCase):
         """
         Tests return of instance method when requesting a loaded spider
         """
-        spider_name = 'validmetadata'
+        spider_name = 'valid_metadata'
         path = 'tests/sample_spiders/' + spider_name
         os.environ['SPIDER_PATH'] = path
 
@@ -60,7 +62,7 @@ class TestSpiderManager(TestCase):
         Tests response when requesting the instance of a spider
         that isn't loaded
         """
-        spider_name = 'nometadata'
+        spider_name = 'no_metadata'
         path = 'tests/sample_spiders/' + spider_name
         os.environ['SPIDER_PATH'] = path
 
