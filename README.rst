@@ -18,8 +18,10 @@ Custom Spiders
 --------------
 
 Using custom spiders is possible, as long as they:
+
 - They must be implemented as a class, and inherit from ``BaseSpider``.
-- The spider file need to be either on `scraper_factory/spiders`, or in a custom location, as long as the environment variable ``$SPIDER_PATH`` is set to the directory where the spider is located.
+
+- The spider file need to be either on ``scraper_factory/spiders``, or in a custom location, as long as the environment variable ``$SPIDER_PATH`` is set to the directory where the spider is located.
 
 Usage example
 -------------
@@ -58,10 +60,6 @@ Usage example
     	'img': 'https://images-na.ssl-images-amazon.com/images/I/71Lg6J7sGHL._SS135_.jpg'
     },
     ...]
-=====
-
-|travis| |coverage| |pypi| |pyversion|
-
 
 Installation
 ------------
@@ -93,3 +91,4 @@ Development version:
 .. |pyversion| image:: https://img.shields.io/pypi/pyversions/scraper_factory
     :target: https://pypi.org/project/scraper-factory/
     :alt: PyPI - Python Version
+
