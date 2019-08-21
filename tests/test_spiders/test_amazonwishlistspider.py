@@ -12,6 +12,18 @@ class AmazonWishlistSpiderTest(SpiderTestBase):
         results_file = 'amazon_wishlist_no_scrolling.txt'
         self.verify_url_results('amazon-wishlist', url, results_file)
 
+    def test_parse_detailed(self):
+        """
+        Test response of AmazonWishlistSpider for a page
+        that doesn't require scrolling with the detailed as True
+        """
+        url = 'https://www.amazon.com/hz/wishlist/ls/30E0MJEB97F1P'
+        results_file = 'amazon_wishlist_detailed.txt'
+        self.verify_url_results('amazon-wishlist',
+                                url,
+                                results_file,
+                                detailed=True)
+
     def test_parse_with_scrolling(self):
         """
         Test response of AmazonWishlistSpider for a page
