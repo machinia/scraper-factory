@@ -6,7 +6,7 @@ class NotFromBaseSpider(object):
             'parameters': [{'param': 'bla'}]
     }
 
-    def __init__(self, uri, queue, **kwargs):
+    def __init__(self, url, queue, detailed=False, **kwargs):
         pass
 
     def parse(self, response):
