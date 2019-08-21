@@ -11,7 +11,7 @@ def err_callback(failure, err_q):
     err_q.put(failure.value)
 
 
-def run_spider(spider_cls, url, data_queue, err_queue):
+def run_spider(spider_cls, err_queue, **kwargs):
     """
     Scrapes a url with the given spider class
     :param spider_cls: spider constructor to be used
@@ -26,7 +26,6 @@ def run_spider(spider_cls, url, data_queue, err_queue):
         'USER_AGENT': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:38.0) '
                       'Gecko/20100101 Firefox/38.0'
     })
-    p = process.crawl(crawler_or_spidercls=spider_cls,
-                      uri=url, queue=data_queue)
+    p = process.crawl(crawler_or_spidercls=spider_cls, **kwargs)
     p.addErrback(err_callback, err_queue)
     process.start()

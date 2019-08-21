@@ -5,7 +5,7 @@ from scraper_factory.core.spidermanager import SpiderManager
 from scraper_factory.core.exceptions import SpiderNotFoundError
 
 
-def scrape(spider_name, url):
+def scrape(spider_name, **kwargs):
     m = SpiderManager()
     spider_cls = m.instance(spider_name)
 
@@ -13,10 +13,13 @@ def scrape(spider_name, url):
         msg = 'Spider {} doesn\'t exist'.format(spider_name)
         raise SpiderNotFoundError(msg)
 
-    data_q = Queue()
     err_q = Queue()
+    data_q = Queue()
+    kwargs['queue'] = data_q
 
-    p = Process(target=run_spider, args=(spider_cls, url, data_q, err_q))
+    p = Process(target=run_spider,
+                args=(spider_cls, err_q),
+                kwargs=kwargs)
     p.start()
     p.join()
 

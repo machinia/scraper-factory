@@ -7,8 +7,8 @@ class IncompleteMetadataSpider(BaseSpider):
             'description': 'this spider has missing parameters',
     }
 
-    def __init__(self, uri, queue, **kwargs):
-        super().__init__('incomplete_metadata', uri, queue, **kwargs)
+    def __init__(self, url, queue, detailed=False, **kwargs):
+        super().__init__('incomplete_metadata', url, queue, **kwargs)
 
     def parse(self, response):
         pass

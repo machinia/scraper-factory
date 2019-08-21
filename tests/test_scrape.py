@@ -13,7 +13,7 @@ class TestScrape(TestCase):
         name = 'non-existing-spider'
         url = 'https://www.amazon.com/hz/wishlist/ls/30E0MJEB97F1P'
         self.assertRaises(exceptions.SpiderNotFoundError,
-                          scrape, name, url)
+                          scrape, name, url=url)
 
     def test_invalid_url(self):
         """
@@ -21,7 +21,7 @@ class TestScrape(TestCase):
         """
         name = 'amazon-wishlist'
         url = 'notanurl'
-        self.assertRaises(exceptions.InvalidUrlError, scrape, name, url)
+        self.assertRaises(exceptions.InvalidUrlError, scrape, name, url=url)
 
     def test_valid_scrape(self):
         """
@@ -31,7 +31,7 @@ class TestScrape(TestCase):
         url = 'https://www.amazon.com/hz/wishlist/ls/30E0MJEB97F1P'
         results_file = 'amazon_wishlist_no_scrolling.txt'
 
-        results = scrape(name, url)
+        results = scrape(name, url=url)
         expected = read_from_file.read_results_from_file(results_file)
 
         self.assertEqual(len(list(results)), len(expected))

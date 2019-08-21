@@ -4,12 +4,15 @@ import ast
 import importlib.util
 from scraper_factory.core import base_spider
 
+HERE = os.path.abspath(os.path.dirname(__file__))
+DEFAULT_PATH = os.path.join(HERE, os.path.pardir, 'spiders')
+
 
 class SpiderManager(object):
     VALID_FILE_REGEX = r'(([a-zA-Z0-9]+)|-|_)+[^__]\.py'
 
     def __init__(self):
-        path = os.getenv('SPIDER_PATH', 'scraper_factory/spiders')
+        path = os.getenv('SPIDER_PATH', DEFAULT_PATH)
         if not os.path.isdir(path):
             raise AttributeError('Invalid path {}'.format(path))
 
