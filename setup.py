@@ -20,7 +20,7 @@ long_description = read('README.rst')
 setup(
     name='scraper-factory',
 
-    version='0.2.0',
+    version='0.2.1',
 
     description='Scraping library to retrieve data from useful pages, such as Amazon wishlists',
     long_description=long_description,
