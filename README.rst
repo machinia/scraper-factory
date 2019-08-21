@@ -1,40 +1,94 @@
 Scraping Factory
 ================
 
+|travis| |coverage| |pypi| |pyversion|
+
 Scraping library to retrieve data from useful pages, such as Amazon wishlists
 
+API
+---
 
-Usage
------
+The API to use the library, scrape data and manage spiders is the following:
 
-.. code:: python
+- ``scrape(SPIDER_NAME, URL)``: scrapes the given ``URL`` using the spider referenced on ``SPIDER_NAME``.
+- ``spiders()``: list all spiders found by the library.
 
-    import scraper_factory
-    scraper_factory.scrape(<<URL>>)
 
-Sample output:
+Custom Spiders
+--------------
 
-.. code:: sh
+Using custom spiders is possible, as long as they:
 
+- They must be implemented as a class, and inherit from ``BaseSpider``.
+
+- The spider file need to be either on ``scraper_factory/spiders``, or in a custom location, as long as the environment variable ``$SPIDER_PATH`` is set to the directory where the spider is located.
+
+Usage example
+-------------
+
+.. code-block:: python
+
+    >>> import scraper_factory as SF
+    >>> SF.scrape('amazon-wishlist', 'https://www.amazon.com/hz/wishlist/ls/24XY9873RPAYN')
     [{
-        'id': 'I2WF7234C0ZXFV',
-        'title': 'AeroPress Coffee and Espresso Maker - Quickly Makes Delicious Coffee without Bitterness - 1 to 3 Cups Per Pressing',
-        'link': '/dp/B0047BIWSK/?coliid=I2WF7234C0ZXFV&colid=2DZOVHLU6U46&psc=1&ref_=lv_vv_lig_dp_it',
-        'img': 'https://images-na.ssl-images-amazon.com/images/I/71Ud9NwXRpL._SS135_.jpg'
+    	'id': 'I1MZVK8RDPYK8P',
+    	'title': 'AmazonBasics Heavy Weight Ruled Lined Index Cards, White, 3x5 Inch Card, 100-Count - AMZ63500',
+    	'byline': None,
+    	'price': None,
+    	'link': 'https://www.amazon.com/dp/B06XSRLP51/',
+    	'img': 'https://images-na.ssl-images-amazon.com/images/I/71i7LVTzpsL._SS135_.jpg'
     }, {
-        'id': 'I20ASZC8L6WX2V',
-        'title': 'POP! Animation: Rick and Morty - Noob Noob 💛Limited Edition',
-        'link': '/dp/B07STXB2JT/?coliid=I20ASZC8L6WX2V&colid=2DZOVHLU6U46&psc=1&ref_=lv_vv_lig_dp_it',
-        'img': 'https://images-na.ssl-images-amazon.com/images/I/61Hde8rm2qL._SS135_.jpg'
+    	'id': 'I14TUJ6TADACU5',
+    	'title': "Women's Walking Shoes Sock Sneakers - Mesh Slip On Air Cushion Lady Girls Modern Jazz Dance Easy Shoes Platform Loafers",
+    	'byline': None,
+    	'price': None,
+    	'link': 'https://www.amazon.com/dp/B07MWCDJ9X/',
+    	'img': 'https://images-na.ssl-images-amazon.com/images/I/61sHA7o-bxL._SS135_.jpg'
     }, {
-        'id': 'I1JVIE5MZQ8JVC',
-        'title': 'Logitech Easy‑Switch K811 Wireless Bluetooth Keyboard for Mac, iPad, iPhone, Apple TV',
-        'link': '/dp/B0099SMFP2/?coliid=I1JVIE5MZQ8JVC&colid=2DZOVHLU6U46&psc=0&ref_=lv_vv_lig_dp_it',
-        'img': 'https://images-na.ssl-images-amazon.com/images/I/81InlOFJ-LL._SS135_.jpg'
+    	'id': 'I3C97JA2JR06PN',
+    	'title': 'Tenergy Redigrill\xa0Smoke-Less Infrared Grill, Indoor Grill, Heating\xa0Electric Tabletop Grill, Non-Stick Easy to Clean\xa0BBQ Grill, for Party/Home, ETL Certified',
+    	'byline': None,
+    	'price': '$179.99',
+    	'link': 'https://www.amazon.com/dp/B07BZ412HT/',
+    	'img': 'https://images-na.ssl-images-amazon.com/images/I/41uGvSPg-ML._SS135_.jpg'
     }, {
-        'id': 'I399YP2BTOB0IL',
-        'title': 'USB Type C to HDMI Digital AV Multiport Hub, USB-C (USB3.1) Adapter PD Charger for Nintendo Switch,Portable 4K HDMI Dock for Samsung Dex Station S10/9/8/Note8/9/Tab S4/S5,MacBook Pro/Air 2018,iPad Pro',
-        'link': '/dp/B07JK9DFKH/?coliid=I399YP2BTOB0IL&colid=2DZOVHLU6U46&psc=1&ref_=lv_vv_lig_dp_it',
-        'img': 'https://images-na.ssl-images-amazon.com/images/I/61mcv6tD1eL._SS135_.jpg'
-    }]
+    	'id': 'I1C7RJI2H0VWZ7',
+    	'title': 'Shelf Liners for Wire Shelf Liner Set of 4 - Graphite (14-Inch-by-36-Inch)',
+    	'byline': None,
+    	'price': '$29.99',
+    	'link': 'https://www.amazon.com/dp/B01N9V4A9A/',
+    	'img': 'https://images-na.ssl-images-amazon.com/images/I/71Lg6J7sGHL._SS135_.jpg'
+    },
+    ...]
+
+Installation
+------------
+
+Latest release through PyPI:
+
+.. code-block:: sh
+
+    $ pip install scraper_factory
+
+Development version:
+
+.. code-block:: sh
+
+    $ git clone git@github.com:machinia/scraper-factory.git
+    $ cd scraper_factory
+    $ pip install -e .
+
+
+.. |travis| image:: https://img.shields.io/travis/machinia/scraper-factory
+    :target: https://travis-ci.org/machinia/scraper-factory
+    :alt: Travis Build
+.. |coverage| image:: https://coveralls.io/repos/github/machinia/scraper-factory/badge.svg
+    :target: https://coveralls.io/github/machinia/scraper-factory
+    :alt: Test coverage
+.. |pypi| image:: https://badge.fury.io/py/scraper-factory.svg
+    :target: https://badge.fury.io/py/scraper-factory
+    :alt: PyPI - Latest version
+.. |pyversion| image:: https://img.shields.io/pypi/pyversions/scraper_factory
+    :target: https://pypi.org/project/scraper-factory/
+    :alt: PyPI - Python Version
 
