@@ -5,8 +5,8 @@ from scraper_factory.core.api import scrape
 
 class SpiderTestBase(TestCase):
 
-    def verify_url_results(self, spider, url, results_file):
-        results = scrape(spider, url)
+    def verify_url_results(self, spider, url, results_file, detailed=False):
+        results = scrape(spider, url=url, detailed=detailed)
         correct_results = read_from_file.read_results_from_file(results_file)
 
         self.assertEqual(len(list(results)), len(correct_results))
