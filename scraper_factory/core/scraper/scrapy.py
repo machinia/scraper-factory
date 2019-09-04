@@ -1,4 +1,18 @@
+import os
+import sys
 from scrapy import crawler
+from scrapy.settings import Settings
+
+
+def get_settings():
+    """
+    Get settings from the 'scrapy_settings.py' file
+    :return: scrapy.settings.Settings instance object
+    """
+    sys.path.append(os.path.abspath(os.path.dirname(__file__)))
+    settings = Settings()
+    settings.setmodule('scrapy_settings', priority='project')
+    return settings
 
 
 def err_callback(failure, err_q):
@@ -20,12 +34,7 @@ def run_spider(spider_cls, err_queue, **kwargs):
     :param err_queue: multiprocessing Queue where errors will be stored
     :return: Nothing
     """
-    process = crawler.CrawlerProcess(settings={
-        'FEED_FORMAT': 'json',
-        'LOG_LEVEL': 'ERROR',
-        'USER_AGENT': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:38.0) '
-                      'Gecko/20100101 Firefox/38.0'
-    })
+    process = crawler.CrawlerProcess(settings=get_settings())
     p = process.crawl(crawler_or_spidercls=spider_cls, **kwargs)
     p.addErrback(err_callback, err_queue)
     process.start()
