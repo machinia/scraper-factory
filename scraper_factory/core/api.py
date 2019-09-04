@@ -20,13 +20,13 @@ def scrape(spider_name, **kwargs):
     p = Process(target=run_spider,
                 args=(spider_cls, err_q),
                 kwargs=kwargs)
+
+    response = []
     p.start()
-    p.join()
+    while p.is_alive():
+        response += utils.queue_to_list(data_q)
 
-    if not err_q.empty():
-        raise err_q.get()
-
-    return utils.queue_to_list(data_q)
+    return response
 
 
 def spiders():
