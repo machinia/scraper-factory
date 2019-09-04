@@ -26,6 +26,9 @@ def scrape(spider_name, **kwargs):
     while p.is_alive():
         response += utils.queue_to_list(data_q)
 
+    if not err_q.empty():
+        raise err_q.get()
+
     return response
 
 
